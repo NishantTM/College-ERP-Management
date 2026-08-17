@@ -1,277 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %} {% block title %} Delete Teacher | College ERP {% endblock %} {% block content %}
 
-<head>
+<div class="delete-container">
 
-    <meta charset="UTF-8">
+    <div class="delete-card">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Delete Teacher | School ERP</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f6f9;
-            color: #212529;
-        }
-        
-        .navbar {
-            background: #1f2937;
-            color: white;
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
-        
-        .logo span {
-            color: #60a5fa;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
-        
-        .nav-links a {
-            color: #d1d5db;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        
-        .nav-links a:hover {
-            color: white;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 650px;
-            margin: 80px auto;
-        }
-        
-        .delete-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .icon {
-            width: 65px;
-            height: 65px;
-            margin: 0 auto 20px;
-            background: #fee2e2;
-            color: #dc2626;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        
-        h1 {
-            font-size: 25px;
-            margin-bottom: 12px;
-        }
-        
-        .message {
-            color: #6b7280;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-        
-        .teacher-info {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 18px;
-            margin-bottom: 25px;
-        }
-        
-        .teacher-info strong {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 6px;
-        }
-        
-        .teacher-info span {
-            color: #6b7280;
-            font-size: 14px;
-        }
-        
-        .actions {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-        
-        .btn {
-            padding: 11px 22px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        
-        .cancel-btn {
-            background: #e5e7eb;
-            color: #374151;
-        }
-        
-        .delete-btn {
-            background: #dc2626;
-            color: white;
-        }
-        
-        .delete-btn:hover {
-            background: #b91c1c;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #6b7280;
-            font-size: 13px;
-        }
-        
-        @media (max-width: 600px) {
-            .nav-links {
-                display: none;
-            }
-            .delete-card {
-                padding: 25px;
-            }
-            .actions {
-                flex-direction: column;
-            }
-        }
-    </style>
-
-</head>
-
-<body>
-
-
-    <nav class="navbar">
-
-        <div class="logo">
-            School<span>ERP</span>
+        <div class="icon">
+            !
         </div>
 
-        <div class="nav-links">
+        <h1>
+            Delete Teacher?
+        </h1>
 
-            <a href="{% url 'student' %}">
-                Students
-            </a>
+        <p class="message">
+            Are you sure you want to delete this teacher? This action cannot be undone.
+        </p>
 
-            <a href="{% url 'teacher' %}">
-                Teachers
-            </a>
 
-            <a href="#">
-                Classes
-            </a>
+        <div class="teacher-info">
 
-            <a href="#">
-                Attendance
-            </a>
+            <strong>
+                {{ teacher.name }}
+            </strong>
 
-            <a href="#">
-                Fees
-            </a>
-
-            <a href="#">
-                Results
-            </a>
+            <span>
+                {{ teacher.subject }} |
+                {{ teacher.email }}
+            </span>
 
         </div>
 
-    </nav>
 
+        <form method="POST">
 
-    <div class="container">
+            {% csrf_token %}
 
-        <div class="delete-card">
+            <div class="actions">
 
+                <a href="{% url 'teacher_list' %}" class="btn cancel-btn">
+                    Cancel
+                </a>
 
-            <div class="icon">
-                !
-            </div>
-
-
-            <h1>
-                Delete Teacher?
-            </h1>
-
-
-            <p class="message">
-
-                Are you sure you want to delete this teacher? This action cannot be undone.
-
-            </p>
-
-
-            <div class="teacher-info">
-
-                <strong>
-                    {{ teacher.name }}
-                </strong>
-
-                <span>
-                    {{ teacher.subject }} |
-                    {{ teacher.email }}
-                </span>
+                <button type="submit" class="btn delete-btn">
+                    Yes, Delete Teacher
+                </button>
 
             </div>
 
-
-            <form method="POST">
-
-                {% csrf_token %}
-
-                <div class="actions">
-
-                    <a href="{% url 'teacher' %}" class="btn cancel-btn">
-                        Cancel
-                    </a>
-
-                    <button type="submit" class="btn delete-btn">
-                        Yes, Delete Teacher
-                    </button>
-
-                </div>
-
-            </form>
-
-
-        </div>
+        </form>
 
     </div>
 
+</div>
 
-    <footer>
-
-        © 2026 School ERP Management System
-
-    </footer>
-
-
-</body>
-
-</html>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from.models import Teacher
 
 # Create your views here.
@@ -8,7 +8,6 @@ def teacher(request):
     teachers = Teacher.objects.all()
     return render (request, "teachers/teacher.html", {"teachers": teachers})
 
-
 def teacher_list(request):
     teachers = Teacher.objects.all()
     
@@ -17,7 +16,6 @@ def teacher_list(request):
 
 def add_teacher(request):
     
-
     if request.method == "POST":
         
         Teacher.objects.create(

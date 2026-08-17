@@ -6,7 +6,6 @@ from.models import Student, Title
 
 # Create your views here.
 def student(request):
-   
     
     students = Student.objects.all()
     stu = Title.objects.all()

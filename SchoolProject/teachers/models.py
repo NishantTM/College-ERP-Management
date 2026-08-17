@@ -4,9 +4,9 @@ from django.db import models
 class Teacher(models.Model):
     
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
-    subject = models.CharField()
+    subject = models.CharField(max_length=100)
     address = models.TextField(max_length=50)
     
     

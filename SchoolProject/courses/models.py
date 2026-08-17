@@ -9,7 +9,7 @@ class Courses(models.Model):
     # start_date = models.DateField()
     # end_date = models.DateField()
     duration = models.PositiveIntegerField(help_text="Duration in years")
-    desciption = models.CharField(max_length=300)
+    description = models.CharField(max_length=300)
 
 
 class Subject(models.Model):
@@ -18,7 +18,7 @@ class Subject(models.Model):
     )
     name = models.CharField(max_length=300)
     code = models.CharField(max_length=20, unique=True)
-    semester = models.PositiveIntegerField(unique=True)
+    semester = models.PositiveIntegerField()
     credit_hours = models.PositiveIntegerField()
 
     def __str__(self):
